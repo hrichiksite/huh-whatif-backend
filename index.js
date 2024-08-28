@@ -2,8 +2,14 @@ const express = require('express');
 const OpenAI = require('openai');
 const bodyParser = require('body-parser');
 require('dotenv').config();
+//cors
+const cors = require('cors');
+
+//set cors all
 
 const app = express();
+app.use(cors({ origin: '*' }));
+
 app.use(bodyParser.json());
 
 const client = new OpenAI({
@@ -35,7 +41,7 @@ app.post('/api/whatif', async (req, res) => {
       ],
       model: '@hf/thebloke/mistral-7b-instruct-v0.1-awq',
       stream: true,
-      max_tokens: 20,
+      max_tokens: 200,
     });
 
     for await (const chunk of chatCompletion) {
