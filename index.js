@@ -39,8 +39,8 @@ app.post('/api/whatif', async (req, res) => {
     });
 
     for await (const chunk of chatCompletion) {
-      const nextword = chunk.choices[0]?.delta?.content;
-      res.write(`data: ${JSON.stringify({ nextword })}\n\n`);
+      const nw = chunk.choices[0]?.delta?.content;
+      res.write(`data: ${JSON.stringify({ nw })}\n\n`);
     }
 
     res.write('data: [DONE]\n\n');
