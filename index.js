@@ -17,6 +17,11 @@ const client = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY || process.env.CF_TOKEN,
 });
 
+app.get('/', (req, res) => {
+  //redirect to the client
+    res.redirect('https://huh-whatif.vercel.app/');
+});
+
 app.post('/api/whatif', async (req, res) => {
   const question = req.body.question;
   console.log({ question });
